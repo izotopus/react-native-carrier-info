@@ -32,4 +32,8 @@ export default class CarrierInfo {
 	static async mobileNetworkOperator() {
 		return await _CarrierInfo.mobileNetworkOperator();
 	}
+
+	static async serviceState() {
+		return await _CarrierInfo.serviceState();
+	}
 }
