@@ -84,6 +84,11 @@ string mobileNetworkCode() - The mobile network code (MNC) for the user’s cell
 ```js
 string mobileNetworkOperator() - return MCC + MNC, e.g 46697
 ```
+### serviceState
+
+```js
+string serviceState() - return serviceState, object from mTelephonyManager.getServiceState() in android
+```
 
 ## Getting Started (and running the demo project)
 
