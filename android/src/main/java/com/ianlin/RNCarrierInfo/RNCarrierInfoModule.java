@@ -2,6 +2,7 @@ package com.ianlin.RNCarrierInfo;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
+import android.telephony.ServiceState;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -15,6 +16,8 @@ public class RNCarrierInfoModule extends ReactContextBaseJavaModule {
     private final static String E_NO_MOBILE_COUNTRY_CODE = "no_mobile_country_code";
     private final static String E_NO_MOBILE_NETWORK = "no_mobile_network";
     private final static String E_NO_NETWORK_OPERATOR = "no_network_operator";
+    private final static String E_NO_SERVICE_STATE = "no_service_state";
+
     private TelephonyManager mTelephonyManager;
 
     public RNCarrierInfoModule(ReactApplicationContext reactContext) {
@@ -77,6 +80,17 @@ public class RNCarrierInfoModule extends ReactContextBaseJavaModule {
             promise.resolve(plmn);
         } else {
             promise.reject(E_NO_NETWORK_OPERATOR, "No mobile network operator");
+        }
+    }
+
+    // serviceState
+    @ReactMethod
+    public void serviceState(Promise promise) {
+        ServiceState state = mTelephonyManager.getServiceState();
+        if (state != null) {
+            promise.resolve(state.getState());
+        } else {
+            promise.reject(E_NO_SERVICE_STATE, "No service state");
         }
     }
 }
