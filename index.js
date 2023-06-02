@@ -17,10 +17,6 @@ export default class CarrierInfo {
 		return await _CarrierInfo.carrierName();
 	}
 
-	static async carrierNameNetworkOperator() {
-		return await _CarrierInfo.carrierNameNetworkOperator();
-	}
-
 	static async isoCountryCode() {
 		return await _CarrierInfo.isoCountryCode();
 	}
