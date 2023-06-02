@@ -37,6 +37,21 @@ RCT_EXPORT_METHOD(carrierName:(RCTPromiseResolveBlock)resolve
     }
 }
 
+RCT_EXPORT_METHOD(carrierNameNetworkOperator:(RCTPromiseResolveBlock)resolve
+                     rejecter:(RCTPromiseRejectBlock)reject)
+{
+    CTTelephonyNetworkInfo *nInfo = [[CTTelephonyNetworkInfo alloc] init];
+    NSString *carrierNameNetworkOperator = [[nInfo subscriberCellularProvider] carrierNameNetworkOperator];
+    if(carrierNameNetworkOperator)
+    {
+        resolve(carrierNameNetworkOperator);
+    }
+    else
+    {
+        reject(@"no_carrier_name", @"Carrier Name cannot be resolved", nil);
+    }
+}
+
 RCT_EXPORT_METHOD(isoCountryCode:(RCTPromiseResolveBlock)resolve
                         rejecter:(RCTPromiseRejectBlock)reject)
 {
