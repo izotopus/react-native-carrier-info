@@ -41,6 +41,16 @@ public class RNCarrierInfoModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void carrierNameNetworkOperator(Promise promise) {
+        String carrierName = mTelephonyManager.getNetworkOperator();
+        if (carrierName != null && !"".equals(carrierName)) {
+            promise.resolve(carrierName);
+        } else {
+            promise.reject(E_NO_CARRIER_NAME, "No network operator carrier name");
+        }
+    }
+
+    @ReactMethod
     public void isoCountryCode(Promise promise) {
         String iso = mTelephonyManager.getSimCountryIso();
         if (iso != null && !"".equals(iso)) {
